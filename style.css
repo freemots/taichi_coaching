@@ -1122,6 +1122,74 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     color: #444;
 }
 
+/* 自己紹介内のリンクエリア */
+.about-links {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px double #e0d7c6; /* 上品な二重線で区切り */
+}
+
+.links-label {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.link-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.link-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 50px; /* 丸みを持たせて親しみやすく */
+    transition: all 0.3s ease;
+}
+
+.link-btn .icon {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* Facebookボタン：落ち着いたネイビー */
+.link-btn.fb {
+    background-color: #f0f2f5;
+    color: #1877f2;
+    border: 1px solid #1877f2;
+}
+
+.link-btn.fb:hover {
+    background-color: #1877f2;
+    color: #fff;
+}
+
+/* ブログボタン：心体見聞録のテーマ色（ゴールド系） */
+.link-btn.blog {
+    background-color: #fdfaf5;
+    color: #b39a6d;
+    border: 1px solid #b39a6d;
+}
+
+.link-btn.blog:hover {
+    background-color: #b39a6d;
+    color: #fff;
+}
+
+/* スマホ表示ではボタンを横いっぱいに */
+@media (max-width: 480px) {
+    .link-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* スマホ対応 */
 @media (max-width: 768px) {
     .contact-box {
