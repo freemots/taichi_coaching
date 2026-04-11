@@ -1184,6 +1184,43 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     color: #fff;
 }
 
+/* インストラクター・プロフィールの名前を小さく調整 */
+.about-name {
+    font-size: 1.8rem; /* h2全体の基本サイズ（適宜調整） */
+    display: flex;
+    align-items: baseline; /* 氏名と「講師」の底辺を揃える */
+    gap: 0.5em; /* 氏名と「講師」の間の余白（適宜調整） */
+}
+
+/* 「古井基宏」の部分 */
+.about-name span:not(.coach) {
+    font-size: 1.6rem; /* 文字サイズ（元のh2より小さく） */
+    font-weight: bold; /* 太字を維持 */
+}
+
+/* 「講師」の部分 */
+.about-name .coach {
+    font-size: 1.4rem; /* 「古井基宏」よりもさらに小さく */
+    color: #888; /* 色を薄くする（必要なら） */
+    font-weight: normal; /* 細くする（必要なら） */
+}
+
+/* スマホ表示用の調整 */
+@media screen and (max-width: 768px) {
+    .about-name {
+        flex-direction: column; /* スマホでは縦並びに */
+        align-items: center; /* 中央揃えに */
+        gap: 0; /* 余白をなくす */
+        font-size: 1.6rem;
+    }
+    .about-name span:not(.coach) {
+        font-size: 1.4rem;
+    }
+    .about-name .coach {
+        font-size: 0.9rem;
+    }
+}
+
 /* スマホ表示ではボタンを横いっぱいに */
 @media (max-width: 480px) {
     .link-btn {
