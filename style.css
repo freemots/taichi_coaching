@@ -1205,6 +1205,34 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     font-weight: normal; /* 細くする（必要なら） */
 }
 
+.blog-link {
+    color: #4a6fa5; /* 落ち着いた紺色 */
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
+}
+
+/* 万年筆や筆先のような筆致をイメージした下線 */
+.blog-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #c0c0c0; /* 銀色のようなグレー */
+    transition: width 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #2a4a7d;
+}
+
+.blog-link:hover::after {
+    width: 100%;
+}
+
 /* スマホ表示用の調整 */
 @media screen and (max-width: 768px) {
     .about-name {

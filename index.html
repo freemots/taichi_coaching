@@ -7,6 +7,7 @@
     <!-- 外部CSSファイルの読み込み -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="icon-32x32.png">
+　　<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -311,7 +312,10 @@
                 <p class="about-intro">
                     「心体見聞録」主宰。身体操作探求家。
                 </p>
-                
+
+<p class="about-intro">
+    太極拳の奥深さや日々の身体の気づきについては、公式ブログ<a href="https://free-mots.jimdofree.com/" target="_blank" rel="noopener noreferrer" class="blog-link">「心体見聞録」</a>で綴っています。
+</p>                
                 <div class="about-story">
                     <p>かつての私は、肉体労働による慢性的な腰痛に悩まされていました。「強く鍛えれば解決する」と信じてがむしゃらにトレーニングをしましたが、結果は逆効果。体はさらに強張り、痛みは増すばかりでした。</p>
                     <p>そんな時、太極拳が持つ「緩めることで生まれる強さ」に出会いました。型をなぞるのではなく、骨格と重力の関係を紐解いていく過程で、痛みから解放されるだけでなく、心までが凪いでいく感覚を知ったのです。</p>
@@ -422,5 +426,29 @@
 
 <!-- 外部JavaScriptファイルの読み込み -->
 <script src="script.js"></script>
+
+<script>
+/* <![CDATA[ */
+      $(function(){
+    //alert("hello");
+
+    const href = location.pathname;
+
+    $.ajax({
+      url: 'https://script.google.com/macros/s/AKfycbxlECGMIRQeaTFwcqpyQ_uipKLFR_4fDReSKiJILSQwTk80qZC66xaWAnQ1aR4-DxGy/exec?param='+href,
+      type: 'GET',
+      dataType: 'json',
+    }).done(function(json) {
+        //$('#text').html(data);
+        //alert(json.status);
+      }).fail(function() {
+        //alert('error');
+      });
+
+  });
+
+/*]]>*/
+</script>
+
 </body>
 </html>
