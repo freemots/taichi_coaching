@@ -1061,6 +1061,10 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     margin-bottom: 25px;
 }
 
+.about-intro2 {
+    Color: #c7ae81;
+}
+
 .about-story p {
     margin-bottom: 20px;
     font-size: 1rem;
