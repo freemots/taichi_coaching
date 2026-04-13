@@ -1244,7 +1244,7 @@ rt {
 
 .access-title-bg {
     /* 画像を背景に設定 */
-    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url('KIMG0252.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1)), url('KIMG0252.jpg');
     background-size: cover;
     background-position: center;
     
@@ -1257,12 +1257,48 @@ rt {
 
 .access-title-bg .section-title {
     margin: 0;
-    color: #333; /* 文字色をハッキリさせる */
+    color: white; /* 文字色をハッキリさせる */
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.6); /* 文字の周りだけさらに白を重ねて読みやすく */
+    background-color: rgba(0,0,0, 0.5); /* 文字の周りだけさらに白を重ねて読みやすく */
     padding: 10px 30px;
     letter-spacing: 0.1em;
 }
+
+/* style.css への追記イメージ */
+.highlight-joy {
+    background-color: #fff9ed; /* より温かみのある色に変更 */
+    border: 2px solid #e0d7c6;
+}
+
+.highlight-joy .empathy-conclusion {
+    font-size: 1.4rem;
+    color: #3a4f6b; /* 信頼のネイビーで締める */
+    border-top: 1px double #e0d7c6;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+/* 核心セクション：姿勢という物差し */
+.core-philosophy {
+    background-color: #2c3e50; /* 落ち着いた深いネイビー */
+    border-top: 5px solid #b39a6d; /* ゴールドのアクセントライン */
+    padding: 100px 40px; /* ゆったりとした余白 */
+}
+
+.core-philosophy .focus-point {
+    background: rgba(255, 255, 255, 0.05); /* わずかに透ける背景 */
+    border: 1px solid #e0d7c6; /* 上品なゴールドの枠線 */
+    padding: 40px;
+    margin: 40px 0;
+}
+
+.core-philosophy h3 {
+    color: #e0d7c6; /* ゴールドの文字 */
+    border: none;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
 /* スマホ表示用の調整 */
 @media screen and (max-width: 768px) {
     .about-name {
