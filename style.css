@@ -314,13 +314,15 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     padding: 80px 40px;
     border-radius: 15px;
     margin: 40px 0;
+	
+    Padding-top: 40px;
 }
 
 .empathy-title {
     text-align: center;
     color: #3a4f6b;
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     line-height: 1.4;
 }
 
@@ -1299,6 +1301,162 @@ rt {
     margin-bottom: 20px;
 }
 
+/* 「微笑み」フレーズ専用の装飾 */
+.smile-phrase {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;               /* 少し大きめに */
+    font-family: "YuMincho", "Hiragino Mincho ProN", serif; /* 柔らかい明朝体 */
+    color: #b39a6d;                 /* ロゴのゴールド系 */
+    letter-spacing: 0.2em;          /* 文字の間隔を広げてゆったりと */
+    padding: 80px 20px;             /* 上下の余白をたっぷり取る */
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.empathy-title .sub-title {
+    display: block;
+    font-size: 1.2rem;     /* メインより一回り小さく */
+    font-weight: normal;   /* 少し細めにしてメリハリを */
+    color: #b39a6d;        /* ゴールド系の色で上品に */
+    margin-top: 15px;      /* メインとの間隔 */
+    letter-spacing: 0.1em; /* 少しゆったりと */
+}
+
+/* 余計な動きを排除した静かなセクション */
+.the-three-walls {
+    padding: 0px 20px;
+    background-color: #fff; /* 背景は潔く白 */
+
+    Margin: 40px 0px 0px 0px;
+}
+
+.walls-container {
+	padding-bottom: 0px;
+ 	margin-bottom: 40px;
+}
+
+.walls-main-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #3a4f6b; /* ロゴのネイビー */
+    letter-spacing: 0.3em;
+    margin-bottom: 40px;
+}
+
+.walls-lead {
+    text-align: center;
+    max-width: 800px;      /* 文字を大きくする分、横幅も少し広げてバランスを調整 */
+    margin: 0 auto 80px;
+    line-height: 2;        /* 行間をたっぷり取って、圧迫感を消す */
+    color: #333;           /* 以前の #444 より少し濃くして視認性アップ */
+    
+    /* 文字サイズの調整 */
+    font-size: 1.1rem;     /* 以前より一回り大きく。標準が16pxなら約19px相当 */
+    font-weight: 500;      /* ほんの少しだけ太くして、言葉に「芯」を通します */
+    letter-spacing: 0.05em; /* わずかに文字の間をあけて、思考が入り込む隙間を作る */
+}
+
+/* 箇条書きのリスト：装飾を最小限に */
+.walls-list {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.wall-entry {
+    margin-bottom: 60px;
+    padding-left: 20px;
+    border-left: 1px solid #b39a6d; /* 寄り添うような細い縦線 */
+}
+
+.wall-entry h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.wall-entry p {
+    color: #666;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* 結論：次の「楽しさ」へと繋ぐ一文 */
+.walls-conclusion {
+    text-align: center;
+    margin-top: 80px;
+    padding-top: 40px;
+    Padding-bottom: 80px;
+    border-top: 1px dotted #ccc;
+    line-height: 2;
+    Font-size: 1.2rem;
+}
+
+.walls-conclusion strong {
+    display: block;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    color: #3a4f6b;
+    letter-spacing: 0.1em;
+}
+
+/* 「楽しくない練習は、続かない。」の最新デザイン */
+.sexy-phrase-gold {
+    display: inline-block; 
+    font-family: "YuMincho", "Hiragino Mincho ProN", serif; /* 柔らかく知的な明朝体 */
+    font-size: 1.4rem;      
+    color: #333;            
+    padding: 15px 40px;     /* 上下に余白を持たせ、言葉を際立たせる */
+    position: relative;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+/* 言葉を上下で挟む、控えめなゴールドのライン */
+.sexy-phrase-gold::before,
+.sexy-phrase-gold::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #b39a6d, transparent); /* ロゴと同じゴールド */
+}
+.sexy-phrase-gold::before { top: 0; }
+.sexy-phrase-gold::after { bottom: 0; }
+
+/* スマホでは画面幅に合わせて最適化 */
+@media (max-width: 600px) {
+    .walls-lead {
+        font-size: 1.05rem; /* スマホでも「しっかり読める」サイズを維持 */
+        text-align: left;   /* 長文になる場合はスマホでは左寄せの方が読みやすいです */
+        padding: 0 10px;
+    }
+}
+
+/* スマホでの見え方を調整 */
+@media (max-width: 600px) {
+    .sexy-phrase-gold {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .empathy-title .sub-title {
+        font-size: 1rem;
+    }
+}
+/* スマホでの調整 */
+@media (max-width: 600px) {
+    .smile-phrase {
+        font-size: 1.3rem;
+        padding: 60px 15px;
+        letter-spacing: 0.1em;
+    }
+}
 /* スマホ表示用の調整 */
 @media screen and (max-width: 768px) {
     .about-name {
