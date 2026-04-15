@@ -1,6 +1,7 @@
 /* 基本設定 */
 html {
     scroll-behavior: smooth;
+Font-size: 17px;
 }
 
 body {
@@ -10,6 +11,7 @@ body {
     background-color: #f9fbfd;
     margin: 0;
     padding: 0;
+　
 }
 
 /* --- ナビゲーションの使い心地向上 --- */
@@ -86,7 +88,7 @@ nav a:not(.nav-logo):not(.nav-reserve):hover {
 /* コンテンツエリア */
 .container {
     max-width: 800px;
-    margin: 0 auto 60px;
+    margin: 0 auto 0;
     padding: 20px 40px;
     background-color: #fff;
     position: relative;
@@ -308,6 +310,230 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     position: relative;
 }
 
+/* --- Reflection Section: Left Aligned, Centered Block --- */
+.reflection-section2 {
+    background-color: #ffffff;
+    padding: 40px 20px;
+}
+
+.pain-point-box {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;               /* 各行の間隔を少し調整 */
+    width: fit-content;
+    margin: 40px auto;
+    align-items: flex-start; /* 左に揃える */
+   
+}
+
+.pain-word {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(2rem, 6vw, 3.5rem); 
+    font-weight: 300;
+    color: #2c3e50;
+    line-height: 1.2;
+    letter-spacing: 0.2em;
+    margin: 0;
+    opacity: 0.9;
+    white-space: nowrap;
+}
+
+/* 追加した一行のスタイル */
+.reflection-sub-text {
+    font-size: 1.2rem;       /* 三つの言葉より小さく、本文より少し大きく */
+    color: #666;             /* 少し淡い色にしてニュアンスを出す */
+    margin-top: 20px;        /* 上に少し隙間を作る */
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .reflection-section2 { padding: 80px 20px; }
+    .pain-word { font-size: 1.8rem; letter-spacing: 0.15em; }
+    .reflection-sub-text { font-size: 1rem; margin-top: 15px; }
+}
+
+/* --- 共感セクション（reflection）のセンターレイアウト --- */
+.reflection-section {
+    background-color: #ffffff; 
+    padding: 40px 0;
+    text-align: center;
+
+}
+
+.reflection-title {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.reflection-lead {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.distortion-focus {
+    max-width: 700px;
+    margin: 0 auto 80px;
+    padding: 40px 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.taichi-philosophy {
+    margin: 80px auto;
+    max-width: 800px;
+}
+
+.philosophy-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.philosophy-quote {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 0 0 30px 0;
+    font-family: 'Hiragino Mincho ProN', 'MS Mincho', serif; /* 格言らしく明朝体に */
+}
+
+.reflection-footer {
+    max-width: 800px;
+    margin: 80px auto 0;
+}
+
+.reflection-footer h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .reflection-title { font-size: 1.5rem; }
+    .philosophy-quote { font-size: 1.6rem; }
+}
+
+/* 「歪み」の一行を立体的な警告として目立たせる */
+#reflection .distortion-focus h3 {
+    font-size: 1.8rem;
+    color: #b03a2e; /* 警告を促す深い赤 */
+    border-left: 5px solid #1a2a3a;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    /* わずかに傾けて「歪み」を視覚化 */
+    transform: rotate(-1deg);
+    display: inline-block;
+    background: rgba(176, 58, 46, 0.05);
+    padding: 10px 20px;
+}
+
+/* 太極拳の要訣を「浮き島」のように見せる */
+#reflection .taichi-philosophy {
+    background: #fdfdfd;
+    padding: 40px;
+    border-radius: 4px;
+    /* 柔らかい影で浮き上がらせる */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin: 50px 0;
+    position: relative;
+    border: 1px solid rgba(179, 155, 92, 0.2); /* ロゴ系のゴールド色 */
+}
+
+/* 引用文の立体感 */
+#reflection .philosophy-quote {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #b39b5c;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    border: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#reflection span:not(.text-effort,.text-joy) {
+    background: linear-gradient(transparent 60%, rgba(212, 175, 55, 0.3) 0%);
+    font-weight: 600;
+    padding: 0 5px;
+}
+
+#reflection .reflection-title {
+    /* 明朝体と優しい色味 */
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 500;
+    color: #444a50;
+    
+    background: #fdfdfd;
+    padding: 40px 40px;
+    border: 1px solid #e0d7c6;
+    border-radius: 2px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+
+    /* --- ここが「右寄り」を直す最重要ポイント --- */
+    display: block !important;    /* 強制的にブロック要素にする */
+    width: 90%;                    /* 横幅を広めに確保 */
+    max-width: 1000px;             /* 広がりすぎ防止 */
+    
+    /* 左右のmarginをautoにすることで、ブラウザが左右均等に余白を配分します */
+    margin-left: auto !important;  
+    margin-right: auto !important; 
+    
+    margin-top: 0;
+    margin-bottom: 70px;
+    /* ------------------------------------------ */
+
+    position: relative;
+    line-height: 1.8;
+    text-align: center;            /* ボックス内の文字を中央揃えに */
+    letter-spacing: 0.15em;
+}
+
+/* SHIFTラベルの配色も文字色に合わせて調整 */
+#reflection .reflection-title::before {
+    content: "SHIFT";
+    position: absolute;
+    top: -14px;
+    left: 40px;
+    background: #b39b5c;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 4px 20px;
+    border-radius: 0;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    box-shadow: 2px 2px 8px rgba(179, 155, 92, 0.2);
+}
+
+/* スマホでの微調整 */
+@media (max-width: 600px) {
+    #reflection .reflection-title {
+        width: 100%;               /* スマホでは画面いっぱいに */
+        padding: 40px 15px;
+    }
+}
+
+/* 「努力」：これまでの重みを少し落ち着いたグレーで表現 */
+
+
+.text-effort {
+   
+    color: #858c94; /* 控えめなグレー */
+    font-weight: inherit; /* 太さは周りに合わせる */
+}
+
+/* 「楽しみ」：これからの明るさを、ロゴと同系のゴールドで表現 */
+.text-joy {
+　　　background: revert;
+    color: #b39b5c; /* 落ち着いたゴールド */
+    font-weight: 600; /* ここだけ少しだけ太くすると、視線が自然に誘導されます */
+}
 /* 共感セクションの装飾 */
 .empathy-section {
     background-color: #fdfaf5; /* ほんのり温かみのある背景色 */
@@ -559,6 +785,128 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     margin-bottom: 10px;
 }
 
+/* 新ベネフィットセクション全体 */
+.benefits-new {
+    background-color: #fcfaf7; /* 非常に薄いベージュで落ち着きを */
+    padding: 100px 0;
+}
+
+.benefit-flex-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+
+/* 各カードの設定 */
+/* 各カードの幅を広げる設定 */
+.benefit-card {
+    background: #fff;
+    padding: 60px 45px;      /* 上下左右の余白をさらに広げて贅沢に */
+    width: 31%;              /* 3分割に近い、よりワイドな幅に（以前は30%） */
+    min-width: 420px;        /* 最小幅を底上げして、窮屈さを解消 */
+    max-width: auto;        /* 広がりすぎない上限を設定して品を保つ */
+    
+    border: 1px solid #e0d7c6;
+    border-radius: 2px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+    
+    /* センター配置を盤石にするための設定 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* フレックスコンテナの間隔も調整 */
+.benefit-flex-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;               /* カード同士の間隔を少し詰め、全体としてワイドに見せる */
+    flex-wrap: wrap;
+    margin-top: 60px;
+    width: 95%;              /* コンテナ自体を広く取る */
+    margin-left: auto;
+    margin-right: auto;
+}
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(179, 155, 92, 0.1);
+}
+
+/* 漢字と数字のビジュアル部分 */
+.benefit-visual {
+    position: relative;
+    margin-bottom: 30px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kanji-bg {
+    font-family: "Noto Serif JP", serif;
+    font-size: 5rem;
+    color: rgba(179, 155, 92, 0.15); /* 極めて薄いゴールド */
+    position: absolute;
+    z-index: 1;
+}
+
+.benefit-number {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.2rem;
+    color: #b39b5c;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    z-index: 2;
+    border-bottom: 1px solid #b39b5c;
+    padding-bottom: 5px;
+}
+
+/* カード内のテキスト */
+.benefit-card h3 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 1.4rem;
+    color: #444a50; /* 優しいチャコールグレー */
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #666;
+    text-align: left; /* 説明文は読みやすく左寄せ */
+}
+
+/* スマホ対応 */
+@media (max-width: 900px) {
+    .benefit-card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+/* スマホ対応：1つずつの幅をしっかり確保 */
+@media (max-width: 1024px) {
+    .benefit-card {
+        width: 45%;          /* タブレットでは2列に */
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .benefit-card {
+        width: 100%;         /* スマホでは画面いっぱいに */
+        max-width: none;
+        padding: 50px 25px;
+	min-width: 100%;
+    }
+}
+
 /* セクション間の余白を調整（空きすぎを解消） */
 .info-section {
     background-color: #fdfaf5;
@@ -763,7 +1111,7 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     padding-bottom: 40px;
 }
 
-#benefits {
+#introduction {
    margin-bottom: 0px;
 }
 
