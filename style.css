@@ -338,6 +338,12 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     white-space: nowrap;
 }
 
+.word-1 { font-size: 2.2rem; transform: translateX(-30px); opacity: 0.7; }
+    .word-2 { font-size: 2.8rem; transform: translateX(20px); font-weight: bold; }
+    .word-3 { font-size: 2.4rem; transform: translateX(-10px); opacity: 0.8; }
+    .word-4 { font-size: 1.8rem; transform: translateY(10px); opacity: 0.6; }
+</style>
+
 /* 追加した一行のスタイル */
 .reflection-sub-text {
     font-size: 1.2rem;       /* 三つの言葉より小さく、本文より少し大きく */
@@ -379,11 +385,11 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
 }
 
 .distortion-focus {
-    max-width: 700px;
-    margin: 0 auto 80px;
-    padding: 40px 20px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%); /* 下に向かって澄んだ色に */
+    padding: 60px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02); /* 浮き出ているような柔らかい影 */
+    margin: 40px 0;
 }
 
 .taichi-philosophy {
@@ -421,21 +427,46 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
 }
 
 /* 「歪み」の一行を立体的な警告として目立たせる */
-#reflection .distortion-focus h3 {
-    font-size: 1.8rem;
-    color: #b03a2e; /* 警告を促す深い赤 */
-    border-left: 5px solid #1a2a3a;
-    padding-left: 15px;
-    margin-bottom: 25px;
-    /* わずかに傾けて「歪み」を視覚化 */
-    transform: rotate(-1deg);
-    display: inline-block;
-    background: rgba(176, 58, 46, 0.05);
-    padding: 10px 20px;
+.distortion-focus h3 {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    letter-spacing: 0.05em; /* 文字間を少し広げて読みやすく */
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* 上下にさりげないラインを引いて、視線を集中させる */
+.distortion-focus h3::before,
+.distortion-focus h3::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 1px;
+    background-color: #d4af37; /* ロゴに合わせたゴールド系 */
+}
+
+.distortion-focus h3::before { top: 0; }
+.distortion-focus h3::after { bottom: 0; }
+
+/* HTML側で、強調したい部分を <span> で囲む想定です */
+.highlight-soft {
+    background: linear-gradient(transparent 70%, #fff9c4 70%); /* 黄色の細いマーカー線 */
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.text-sign {
+    border-bottom: 1px dashed #d4af37; /* サインという言葉の下に破線 */
+    padding-bottom: 2px;
 }
 
 /* 太極拳の要訣を「浮き島」のように見せる */
-#reflection .taichi-philosophy {
+.reflection-section .taichi-philosophy {
     background: #fdfdfd;
     padding: 40px;
     border-radius: 4px;
@@ -447,7 +478,7 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
 }
 
 /* 引用文の立体感 */
-#reflection .philosophy-quote {
+.reflection-section .philosophy-quote {
     font-size: 2.2rem;
     font-weight: 600;
     color: #b39b5c;
@@ -457,13 +488,13 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
     margin: 20px 0;
 }
 
-#reflection span:not(.text-effort,.text-joy) {
+.reflection-section span:not(.text-effort,.text-joy) {
     background: linear-gradient(transparent 60%, rgba(212, 175, 55, 0.3) 0%);
     font-weight: 600;
     padding: 0 5px;
 }
 
-#reflection .reflection-title {
+.reflection-section .reflection-title {
     /* 明朝体と優しい色味 */
     font-family: "Noto Serif JP", serif;
     font-size: clamp(1.4rem, 4vw, 2.2rem);
@@ -496,7 +527,7 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
 }
 
 /* SHIFTラベルの配色も文字色に合わせて調整 */
-#reflection .reflection-title::before {
+.reflection-section .reflection-title::before {
     content: "SHIFT";
     position: absolute;
     top: -14px;
@@ -513,7 +544,7 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif
 
 /* スマホでの微調整 */
 @media (max-width: 600px) {
-    #reflection .reflection-title {
+    .reflection-section .reflection-title {
         width: 100%;               /* スマホでは画面いっぱいに */
         padding: 40px 15px;
     }
