@@ -101,3 +101,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+$(window).on('scroll', function() {
+    var scrollPos = $(window).scrollTop();
+    var windowHeight = $(window).height();
+    
+    // 各セクションの位置
+    var introTop = $('#introduction').offset().top;
+    var philosophyTop = $('#philosophy-deep').offset().top;
+    var nextSectionTop = $('#lesson-flow').offset().top; // 次のセクション（稽古内容など）
+
+    // 1. #introduction 用のボタン制御
+    var isInsideIntro = (scrollPos > introTop - windowHeight + 100) && (scrollPos < philosophyTop - 50);
+    if (isInsideIntro) {
+        $('#report-buttons-group').addClass('is-show');
+    } else {
+        $('#report-buttons-group').removeClass('is-show');
+    }
+
+    // 2. #philosophy-deep 用のボタン制御
+    var isInsidePhilosophy = (scrollPos > philosophyTop - windowHeight + 100) && (scrollPos < nextSectionTop - 50);
+    if (isInsidePhilosophy) {
+        $('#philosophy-buttons-group').addClass('is-show');
+    } else {
+        $('#philosophy-buttons-group').removeClass('is-show');
+    }
+});

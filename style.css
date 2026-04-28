@@ -1812,6 +1812,56 @@ rt {
 .sexy-phrase-gold::before { top: 0; }
 .sexy-phrase-gold::after { bottom: 0; }
 
+/* ボタンをまとめるコンテナ */
+.report-group {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 99999; /* ナビゲーションと同じか、それ以上に設定 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none; /* 消えている時は下の要素を触れるようにする */
+}
+
+.report-group.is-show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto; /* 出ている時だけクリック可能 */
+}
+
+/* 各ボタンの共通スタイル */
+.report-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.report-btn:hover {
+    transform: scale(1.05);
+}
+
+/* 個別の配色（nowはインディゴ、nikyokukaは落ち着いた別の色など） */
+.now-btn { background-color: #4338ca; }
+.nikyokuka-btn { background-color: #1e293b; } /* 伝統と現代の対比をイメージしたスレート色 */
+
+/* 理念系ボタンの配色 */
+.yowakimono-btn { background-color: #8b8c89; } /* 柔らかな石の色（謙虚さ） */
+.truth-btn { background-color: #5c4033; }      /* 深い土の色（真理・根源） */
+
 /* スマホでは画面幅に合わせて最適化 */
 @media (max-width: 600px) {
     .walls-lead {
@@ -1843,6 +1893,34 @@ rt {
         letter-spacing: 0.1em;
     }
 }
+
+/* スマホ向けのスタイル */
+@media screen and (max-width: 768px) {
+    /* 1. コンテンツの横幅を画面いっぱいに */
+    body {
+        padding: 10px; /* 左右に少し余白を作る */
+    }
+    
+    .container {
+        width: 100% !important; /* 横幅を100%に固定 */
+        box-sizing: border-box;
+    }
+
+    /* 2. フォントサイズを読みやすく調整 */
+    p, li {
+        font-size: 16px; /* スマホで推奨される基本サイズ */
+        line-height: 1.6;
+    }
+
+    /* 3. ボタンを押しやすく（大きく） */
+    .button, button {
+        display: block;
+        width: 100%;       /* ボタンを横いっぱいに広げる */
+        padding: 15px 0;   /* 高さを出す */
+        margin-bottom: 10px;
+    }
+}
+
 /* スマホ表示用の調整 */
 @media screen and (max-width: 768px) {
     .about-name {
@@ -2013,3 +2091,4 @@ rt {
         background-color: #f9fbfd; /* サイトの背景色と合わせる */
     }
 }
+

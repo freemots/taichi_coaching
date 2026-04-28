@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太極拳の真実：術理の二極化について</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Base typography and smooth scrolling */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 50vh;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Utility animations */
+        .fade-in {
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom toggle button active states */
+        .btn-active-physical {
+            background-color: #9a3412; /* orange-800 */
+            color: white;
+            border-color: #9a3412;
+        }
+        .btn-active-relax {
+            background-color: #115e59; /* teal-800 */
+            color: white;
+            border-color: #115e59;
+        }
+
+        /* Hide scrollbar for clean UI in certain overflow boxes if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-stone-300 selection:text-stone-900">
+
+    <!-- Chosen Palette: Warm Neutrals (stone-50 background, stone-800 text) with Orange-800 (Physical Logic) and Teal-800 (Relaxation Logic) accents to represent the stark contrast in methodologies. -->
+    <!-- Application Structure Plan: The SPA uses a linear, guided exploration format. It begins with the overarching problem (Polarization). It then uses an interactive tabbed interface for side-by-side conceptual comparison of the two distinct logics. Following this, a radar chart visualizes the hidden internal parameters causing the confusion. Finally, an interactive "Choice" section prompts the user to reflect and decide their path, revealing contextual conclusions. This structure facilitates deep understanding without overwhelming the user with a wall of text. -->
+    <!-- Visualization & Content Choices: 1. Toggle Interface (Compare Goal) -> Allows active exploration of text-heavy concepts (Logic 1 vs Logic 2). 2. Radar Chart (Relationship/Compare Goal) -> Quantifies the abstract textual concepts (e.g., Tension vs. Relaxation) to visually prove how opposite the two methods are despite looking identical. 3. Interactive Choice Cards -> Engages the user to internalize the report's final question. Library: Chart.js for canvas rendering. HTML/CSS for all other interactions. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <main class="max-w-5xl mx-auto px-4 py-12 md:py-20">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-16 fade-in-up">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-stone-200 text-stone-600 text-sm font-bold tracking-widest mb-6">
+                REPORT & ANALYSIS
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-stone-900 mb-6 leading-tight">
+                太極拳の真実<br>
+                <span class="text-2xl md:text-3xl text-stone-600 font-medium mt-2 block">術理をめぐる「二極化」の正体</span>
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+                太極拳の世界を眺めると、今、最も本質的な部分で大きな「二極化」が起きています。それは単なるスタイルの違いではなく、<strong>「どうやって力を生み出し、相手を制するか」という術理（ロジック）そのものの分断</strong>です。
+            </p>
+        </header>
+
+        <!-- Section 1: The Two Logics (Interactive Toggle) -->
+        <section class="mb-24 fade-in-up" style="animation-delay: 0.2s;">
+            <div class="bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden">
+                <div class="p-8 md:p-12 border-b border-stone-100 text-center">
+                    <h2 class="text-2xl font-bold text-stone-800 mb-4">二つの相反する「術理」</h2>
+                    <p class="text-stone-600 mb-8">一見、同じような動きをしていても、その中身は正反対といってもいいほど違っています。以下のボタンを切り替えて、それぞれのロジックを探求してください。</p>
+                    
+                    <!-- Toggle Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button id="btn-logic-physical" class="px-8 py-4 rounded-xl font-bold text-lg border-2 border-stone-300 text-stone-500 hover:bg-stone-100 transition-colors btn-active-physical shadow-sm">
+                            ⛰️ 身体的優位性を活かす
+                        </button>
+                        <button id="btn-logic-relax" class="px-8 py-4 rounded-xl font-bold text-lg border-2 border-stone-300 text-stone-500 hover:bg-stone-100 transition-colors shadow-sm">
+                            💧 「脱力」を極める
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Content Area -->
+                <div id="logic-content" class="p-8 md:p-12 bg-stone-50 min-h-[400px]">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Visualizing the Confusion (Chart) -->
+        <section class="mb-24 fade-in-up" style="animation-delay: 0.4s;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Text Explanation -->
+                <div>
+                    <div class="inline-block text-3xl mb-4">👁️</div>
+                    <h2 class="text-3xl font-bold text-stone-900 mb-6">なぜ、この二つが混同されているのか？</h2>
+                    <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                        困ったことに、見た目の「形」だけでは、この二つのどちらをやっているのか判別がつきにくいのです。
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                            <h3 class="font-bold text-stone-900 mb-2 text-lg">見えない中身</h3>
+                            <p class="text-stone-600">伝統を名乗っていても、実際には筋力や体重移動で相手を動かしているケースが少なくありません。</p>
+                        </li>
+                        <li class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                            <h3 class="font-bold text-stone-900 mb-2 text-lg">言葉の罠</h3>
+                            <p class="text-stone-600">どちらも「力を抜け」と言いますが、前者は<strong>「効率的な連動のためのリラックス」</strong>を指し、後者は<strong>「一切の抵抗を捨てるための完全な脱力」</strong>を指しています。</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Chart Area -->
+                <div class="bg-stone-900 rounded-3xl p-6 md:p-8 shadow-xl relative">
+                    <h3 class="text-center text-stone-100 font-bold mb-2">内部パラメータの可視化</h3>
+                    <p class="text-center text-stone-400 text-sm mb-6">※外見は同じでも、内部で使う要素が完全に逆転している</p>
+                    
+                    <div class="bg-stone-800 rounded-2xl p-4">
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: The Ultimate Choice -->
+        <section class="fade-in-up" style="animation-delay: 0.6s;">
+            <div class="bg-stone-200 h-px w-full mb-16"></div>
+            
+            <div class="text-center mb-12">
+                <div class="inline-block text-4xl mb-4">🛤️</div>
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">私たちが向き合うべき問い</h2>
+                <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                    「太極拳をやる」ということは、次のどちらの道を行くのかを決めることでもあります。あなたが求めている太極拳は、どちらの術理に基づいていますか？
+                </p>
+            </div>
+
+            <!-- Choice Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                
+                <button onclick="revealConclusion('physical')" class="text-left group bg-white hover:bg-orange-50 border-2 border-stone-200 hover:border-orange-600 p-8 rounded-3xl transition-all duration-300 shadow-sm hover:shadow-md">
+                    <span class="block text-sm font-bold text-orange-700 tracking-widest mb-2 uppercase">Path 01</span>
+                    <h3 class="text-xl font-bold text-stone-900 mb-4 group-hover:text-orange-900">物理的なパワーを効率化する道</h3>
+                    <p class="text-stone-600 mb-6">身体のエンジンを強化し、筋力や体重をいかに効率よく相手に伝えるかを追求する。</p>
+                    <div class="text-orange-600 font-bold group-hover:translate-x-2 transition-transform">この道を選択する →</div>
+                </button>
+
+                <button onclick="revealConclusion('relax')" class="text-left group bg-white hover:bg-teal-50 border-2 border-stone-200 hover:border-teal-600 p-8 rounded-3xl transition-all duration-300 shadow-sm hover:shadow-md">
+                    <span class="block text-sm font-bold text-teal-700 tracking-widest mb-2 uppercase">Path 02</span>
+                    <h3 class="text-xl font-bold text-stone-900 mb-4 group-hover:text-teal-900">異質な次元の力を探求する道</h3>
+                    <p class="text-stone-600 mb-6">身体的優位性を捨て、徹底した脱力によってのみ到達できる力を追求する。</p>
+                    <div class="text-teal-600 font-bold group-hover:translate-x-2 transition-transform">この道を選択する →</div>
+                </button>
+
+            </div>
+
+            <!-- Hidden Conclusion Result -->
+            <div id="conclusion-result" class="hidden max-w-3xl mx-auto bg-stone-900 text-stone-100 p-8 md:p-12 rounded-3xl shadow-2xl text-center fade-in">
+                <!-- Result injected here -->
+            </div>
+
+        </section>
+
+        <footer class="mt-24 text-center text-stone-400 text-sm">
+            <p>Based on: 太極拳の真実：術理をめぐる「二極化」の正体</p>
+            <p class="mt-2">Interactive Analysis Report</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Data Storage ---
+        const logicData = {
+            physical: {
+                title: "「身体的優位性」を活かす太極拳",
+                subtitle: "パワーと構造の追求",
+                themeColor: "text-orange-800",
+                bgHeader: "bg-orange-100",
+                concept: "「どうすればもっと強い力を出せるか？」をベースにしています。",
+                method: "下半身のバネ、腰の回転、体重移動などを連動させ、大きなエネルギーを作ります。",
+                features: "身体が大きく、力が強い人、あるいは若くて動ける人が有利になりやすい側面があります。「構造的な強さ」を作るために、ある程度の緊張や踏ん張り（抵抗）を必要とします。",
+                summary: "一般的な格闘技やスポーツの延長線上にある「効率的な物理学」といえます。"
+            },
+            relax: {
+                title: "「脱力（リラックス）」を極める太極拳",
+                subtitle: "本当の術理の追求",
+                themeColor: "text-teal-800",
+                bgHeader: "bg-teal-100",
+                concept: "「どうすれば自分の力みをゼロにできるか？」がすべての出発点です。",
+                method: "徹底的に「松（ソン）」と呼ばれる脱力を行い、相手と接触しても一切の抵抗（ぶつかり）をなくします。",
+                features: "筋力や体重に頼らないため、小柄な人や高齢者が、自分より大きな相手を無力化できる可能性があります。ここでは、力を入れることは「隙」となり、負ける原因になると考えます。",
+                summary: "一般的な身体感覚とは逆を行く、太極拳独自の「非物理的」とも見える高度な術理です。"
+            }
+        };
+
+        // --- Core Interaction Handling ---
+        
+        // 1. Tabbed Interface Logic
+        const btnPhysical = document.getElementById('btn-logic-physical');
+        const btnRelax = document.getElementById('btn-logic-relax');
+        const contentArea = document.getElementById('logic-content');
+
+        function updateLogicDisplay(type) {
+            const data = logicData[type];
+            
+            // Generate HTML
+            const html = `
+                <div class="fade-in">
+                    <div class="inline-block px-3 py-1 rounded-full ${data.bgHeader} ${data.themeColor} text-sm font-bold tracking-widest mb-4">
+                        ${data.subtitle}
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mb-8">${data.title}</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                            <h4 class="text-stone-400 font-bold text-sm tracking-widest uppercase mb-3">考え方</h4>
+                            <p class="text-stone-800 font-medium">${data.concept}</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                            <h4 class="text-stone-400 font-bold text-sm tracking-widest uppercase mb-3">やり方</h4>
+                            <p class="text-stone-800">${data.method}</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                            <h4 class="text-stone-400 font-bold text-sm tracking-widest uppercase mb-3">特徴</h4>
+                            <p class="text-stone-800 text-sm leading-relaxed">${data.features}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-stone-200/50 p-6 rounded-2xl border-l-4 ${type === 'physical' ? 'border-orange-500' : 'border-teal-500'}">
+                        <p class="text-lg font-medium text-stone-800 italic">「${data.summary}」</p>
+                    </div>
+                </div>
+            `;
+            
+            contentArea.innerHTML = html;
+
+            // Update button styles
+            if (type === 'physical') {
+                btnPhysical.classList.add('btn-active-physical');
+                btnPhysical.classList.remove('text-stone-500', 'bg-transparent');
+                
+                btnRelax.classList.remove('btn-active-relax');
+                btnRelax.classList.add('text-stone-500', 'bg-transparent');
+            } else {
+                btnRelax.classList.add('btn-active-relax');
+                btnRelax.classList.remove('text-stone-500', 'bg-transparent');
+                
+                btnPhysical.classList.remove('btn-active-physical');
+                btnPhysical.classList.add('text-stone-500', 'bg-transparent');
+            }
+        }
+
+        // Event Listeners for Tabs
+        btnPhysical.addEventListener('click', () => updateLogicDisplay('physical'));
+        btnRelax.addEventListener('click', () => updateLogicDisplay('relax'));
+
+        // Initialize first tab
+        updateLogicDisplay('physical');
+
+
+        // 2. Chart.js Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            const radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        '筋力・体重の利用', 
+                        '踏ん張り・抵抗感', 
+                        '身体的優位性(体格)', 
+                        '松(完全な脱力)', 
+                        '非物理的ロジック'
+                    ],
+                    datasets: [{
+                        label: '身体的優位性 (パワーと構造)',
+                        data: [95, 80, 90, 20, 15],
+                        backgroundColor: 'rgba(154, 52, 18, 0.2)', // Orange-800 transparent
+                        borderColor: 'rgba(154, 52, 18, 1)',
+                        pointBackgroundColor: 'rgba(154, 52, 18, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(154, 52, 18, 1)',
+                        borderWidth: 2
+                    }, {
+                        label: '本当の術理 (完全なる脱力)',
+                        data: [10, 5, 10, 100, 95],
+                        backgroundColor: 'rgba(17, 94, 89, 0.2)', // Teal-800 transparent
+                        borderColor: 'rgba(17, 94, 89, 1)',
+                        pointBackgroundColor: 'rgba(17, 94, 89, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(17, 94, 89, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: {
+                                color: '#d6d3d1', // stone-300
+                                font: { size: 12, family: 'sans-serif' }
+                            },
+                            ticks: {
+                                display: false, // Hide numeric ticks
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#e7e5e4', // stone-200
+                                padding: 20,
+                                font: { size: 13 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)', // stone-900
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            boxPadding: 4
+                        }
+                    }
+                }
+            });
+        });
+
+        // 3. Choice Reveal Logic
+        function revealConclusion(choice) {
+            const resultDiv = document.getElementById('conclusion-result');
+            let content = '';
+
+            if (choice === 'physical') {
+                content = `
+                    <div class="inline-block text-orange-500 text-4xl mb-4">⛰️</div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">効率的な物理学の探求へ</h3>
+                    <p class="text-stone-300 text-lg leading-relaxed mb-6">
+                        あなたはその道の構造的な強さを磨くことを選びました。それは一般的な格闘技やスポーツに通じる、明確で論理的な物理の道です。
+                    </p>
+                    <div class="bg-stone-800 p-6 rounded-2xl border border-stone-700">
+                        <p class="text-stone-200 font-bold">結論：中身を見極めることが大切です。</p>
+                        <p class="text-stone-400 text-sm mt-2">今の太極拳界の二極化は、単なる「健康か武術か」というレベルの話ではありません。「身体の力に頼るのか、それとも力を捨てるのか」という根源的な選択です。</p>
+                    </div>
+                `;
+            } else {
+                content = `
+                    <div class="inline-block text-teal-500 text-4xl mb-4">💧</div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">常識を壊し続ける道へ</h3>
+                    <p class="text-stone-300 text-lg leading-relaxed mb-6">
+                        後者の「力を本当に抜く」という道は、非常に険しく、これまでの自分の常識を壊し続ける必要があります。しかし...
+                    </p>
+                    <div class="bg-stone-800 p-6 rounded-2xl border border-stone-700">
+                        <p class="text-teal-400 font-bold text-xl mb-2">それこそが「最強の武術」の理由</p>
+                        <p class="text-stone-400 text-sm">あなたが求めている太極拳の中身を見極めることが、何よりも大切なのです。</p>
+                    </div>
+                `;
+            }
+
+            resultDiv.innerHTML = content;
+            resultDiv.classList.remove('hidden');
+            
+            // Smooth scroll to conclusion
+            setTimeout(() => {
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+
+    </script>
+<a href="index.html#introduction" 
+   class="fixed bottom-8 right-8 bg-stone-800 hover:bg-black text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 z-50 group"
+   title="メインページへ戻る">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+</a>
+</body>
+</html>

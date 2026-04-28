@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太極拳の現状分析：伝統の継承と現代的変容に関する考察</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f5f5f4;
+            color: #292524;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            border-bottom-color: #4338ca;
+            color: #4338ca;
+            font-weight: bold;
+            background-color: #eef2ff;
+        }
+
+        .interactive-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 3px; }
+    </style>
+</head>
+<body class="selection:bg-indigo-200 selection:text-indigo-900">
+
+    <!-- Chosen Palette: Formal Academic Neutrals (stone-100 to stone-900) with Indigo (Traditional/Theory), Rose (Traditional/Practice), and Teal (Modern/Sport) accents. -->
+    <!-- Application Structure Plan: A top-down analytical dashboard approach. 1. Macro Analysis: Visualizing the historical split into Modern vs Traditional. 2. Micro Analysis: Tabbed exploration of the internal polarization within Traditional Taijiquan (Theory vs Practice) to manage detailed text without clutter. 3. Quantitative Comparison: A radar chart synthesizing the structural differences across all three major groups identified in the report. 4. Interactive Synthesis: A decision-tree interface helping users align their personal goals with the report's conclusions on selecting the appropriate system. -->
+    <!-- Visualization & Content Choices: 1. CSS Grid/Flex Cards (Goal: Organize/Inform) -> Clarifies the macro split (Sport vs Tradition). 2. Tabbed Interface (Goal: Compare) -> Allows focused reading of the academic text comparing Group A and Group B within Traditional Taiji. 3. Radar Chart via Chart.js (Goal: Compare/Relationships) -> Visually maps the qualitative traits (Aesthetics vs Practicality) mentioned in Section 3 onto a comparative quantitative scale. 4. Interactive Path Finder (Goal: Engage/Synthesize) -> Translates the report's conclusion into a user-centric tool. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <main class="max-w-6xl mx-auto px-4 py-12 md:py-16 lg:px-8">
+        
+        <header class="text-center mb-20 fade-in">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-stone-200 text-stone-700 text-xs font-bold tracking-widest mb-6 uppercase">
+                Analytical Report Dashboard
+            </div>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 mb-6 leading-tight">
+                太極拳の現状分析
+            </h1>
+            <h2 class="text-xl md:text-2xl text-stone-600 font-medium mb-10">
+                伝統の継承と現代的変容に関する考察
+            </h2>
+            <div class="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200">
+                <p class="text-base md:text-lg text-stone-700 leading-relaxed text-left">
+                    本報告書は、護身を目的とした高度な武術として確立された太極拳が、いかにして現代的なスポーツへと変容し、さらに伝統の内部でどのような分極化を起こしているかを客観的に分析するものです。以下のインタラクティブ・モジュールを通じて、その多層的な構造を探索してください。
+                </p>
+            </div>
+        </header>
+
+        <section class="mb-24 fade-in delay-100">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl font-bold text-stone-900 mb-4">マクロ構造分析：二つの主要な潮流</h3>
+                <p class="text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                    1950年代の「簡化太極拳」制定を契機として、太極拳は歴史的文化遺産としての「伝統」と、万人に開かれた「スポーツ」という二面性を持つに至りました。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-3xl p-8 border-t-4 border-teal-600 shadow-sm interactive-card">
+                    <div class="text-4xl mb-4">🏅</div>
+                    <h4 class="text-xl font-bold text-stone-900 mb-4">パフォーマンス・競技としての太極拳</h4>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        健康維持および競技会における技術評価の獲得を主たる目的とする現代的な形態。
+                    </p>
+                    <ul class="space-y-3 text-sm text-stone-700 bg-stone-50 p-4 rounded-xl">
+                        <li><span class="font-bold text-teal-700 mr-2">▪</span> 評価指標は審美系競技に類似</li>
+                        <li><span class="font-bold text-teal-700 mr-2">▪</span> 動作の正確性、柔軟性、外見上の美しさを重視</li>
+                        <li><span class="font-bold text-teal-700 mr-2">▪</span> 定量・定性的な採点基準の確立</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border-t-4 border-indigo-800 shadow-sm interactive-card">
+                    <div class="text-4xl mb-4">🏛️</div>
+                    <h4 class="text-xl font-bold text-stone-900 mb-4">伝統武術としての太極拳</h4>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        自己防衛能力の獲得と、特有の身体操作による内発的な力の生成を目的とする古来の形態。
+                    </p>
+                    <ul class="space-y-3 text-sm text-stone-700 bg-stone-50 p-4 rounded-xl">
+                        <li><span class="font-bold text-indigo-800 mr-2">▪</span> 外見上の装飾よりも力学的効率を優先</li>
+                        <li><span class="font-bold text-indigo-800 mr-2">▪</span> 内部的な筋連動や感覚の鋭敏化に主眼</li>
+                        <li><span class="font-bold text-indigo-800 mr-2">▪</span> 実用性の追求（次項にてさらに細分化）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24 fade-in delay-200">
+            <div class="bg-stone-900 rounded-[2.5rem] p-8 md:p-12 shadow-xl text-stone-100">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">ミクロ構造分析：伝統内部における二極化</h3>
+                    <p class="text-stone-400 max-w-2xl mx-auto leading-relaxed">
+                        古来の体系を維持する「伝統太極拳」の内部においても、その活動指針や価値観に基づき、さらなる分極化が観察されます。以下のタブを切り替えて詳細を確認してください。
+                    </p>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center gap-2 mb-8 bg-stone-800 p-2 rounded-2xl w-fit mx-auto">
+                    <button id="tab-theory" class="tab-btn active px-6 py-3 rounded-xl text-sm md:text-base transition-colors w-full md:w-auto">
+                        ① 理論的・形式的継承重視
+                    </button>
+                    <button id="tab-practice" class="tab-btn px-6 py-3 rounded-xl text-sm md:text-base text-stone-400 hover:text-stone-200 transition-colors w-full md:w-auto">
+                        ② 実践的・実証的検証重視
+                    </button>
+                </div>
+
+                <div id="content-theory" class="bg-stone-800 border border-stone-700 rounded-3xl p-8 md:p-10 transition-opacity duration-300">
+                    <h4 class="text-2xl font-bold text-indigo-300 mb-6 flex items-center gap-3">
+                        <span class="text-3xl">📜</span> 理論的・形式的継承を重視する群
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-stone-900/50 p-6 rounded-2xl">
+                            <h5 class="text-stone-400 text-xs font-bold tracking-widest uppercase mb-3">特徴 (Characteristics)</h5>
+                            <p class="text-stone-200 text-sm leading-relaxed">師範から伝承された門派独自の套路（型）および理論体系の厳密な保存を最優先事項とする。</p>
+                        </div>
+                        <div class="bg-stone-900/50 p-6 rounded-2xl">
+                            <h5 class="text-stone-400 text-xs font-bold tracking-widest uppercase mb-3">分析 (Analysis)</h5>
+                            <p class="text-stone-200 text-sm leading-relaxed">「気」や「内功」といった抽象的概念を強調し、文化的・精神的な側面を重視する傾向にある。</p>
+                        </div>
+                        <div class="bg-stone-900/50 p-6 rounded-2xl border border-stone-700/50">
+                            <h5 class="text-stone-400 text-xs font-bold tracking-widest uppercase mb-3">課題 (Challenges)</h5>
+                            <p class="text-stone-200 text-sm leading-relaxed">形式の美学や理論的整合性は極めて高い一方で、対人における実用性や術理の検証が不十分となる懸念が指摘されている。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-practice" class="bg-stone-800 border border-stone-700 rounded-3xl p-8 md:p-10 transition-opacity duration-300 hidden">
+                    <h4 class="text-2xl font-bold text-rose-300 mb-6 flex items-center gap-3">
+                        <span class="text-3xl">⚔️</span> 実践的・実証的検証を重視する群
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-stone-900/50 p-6 rounded-2xl">
+                            <h5 class="text-stone-400 text-xs font-bold tracking-widest uppercase mb-3">特徴 (Characteristics)</h5>
+                            <p class="text-stone-200 text-sm leading-relaxed">「推手」等を通じた対人技術の検証を重視し、武術としての有効性を追求する。</p>
+                        </div>
+                        <div class="bg-stone-900/50 p-6 rounded-2xl">
+                            <h5 class="text-stone-400 text-xs font-bold tracking-widest uppercase mb-3">分析 (Analysis)</h5>
+                            <p class="text-stone-200 text-sm leading-relaxed">既存の理論を盲信するのではなく、身体操作の結果や実証的な効果を重んじる。他武道や格闘技の力学的知見を取り入れる開放的な研究姿勢も見られる。</p>
+                        </div>
+                        <div class="bg-stone-900/50 p-6 rounded-2xl border border-stone-700/50">
+                            <h5 class="text-stone-400 text-xs font-bold tracking-widest uppercase mb-3">課題 (Challenges)</h5>
+                            <p class="text-stone-200 text-sm leading-relaxed">身体への負荷が高い訓練を伴う場合があり、普及性や初心者への導入障壁が課題となる。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24 fade-in delay-300">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl font-bold text-stone-900 mb-4">定量・定性的要因の比較可視化</h3>
+                <p class="text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                    本報告書で定義された3つのドメイン（現代競技、伝統・理論派、伝統・実践派）が、それぞれどのパラメータに主眼を置いているかを視覚的に分析します。
+                </p>
+            </div>
+
+            <div class="bg-white rounded-[2rem] p-8 border border-stone-200 shadow-sm">
+                <div class="chart-container">
+                    <canvas id="domainComparisonChart"></canvas>
+                </div>
+                
+                <div class="mt-8 bg-stone-50 p-6 rounded-2xl border border-stone-100">
+                    <h4 class="font-bold text-stone-800 mb-2">共通課題と今後の展望</h4>
+                    <p class="text-sm text-stone-700 leading-relaxed">
+                        これらの多様なスタイルは時に正統性を巡って論争を招きます。指導者の世代交代に伴う深層的な術理の「形骸化」が界隈全体の共通課題です。一方で、近年では武術的な身体力学を運動生理学の観点から再定義し、関節負荷を軽減しつつ健康効果を最大化させるといった、知見の統合も進展しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 fade-in delay-300">
+            <div class="bg-indigo-900 rounded-[2.5rem] p-10 md:p-14 shadow-2xl relative overflow-hidden text-center">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-bold text-white mb-6">最適体系の選択モジュール</h3>
+                    <p class="text-indigo-200 max-w-2xl mx-auto leading-relaxed mb-10">
+                        結論として、利用者は自己の目的に照らし合わせ、適切な体系を選択することが肝要です。以下の質問に答えることで、報告書の分析に基づく推奨体系を提示します。
+                    </p>
+
+                    <div id="quiz-q1" class="max-w-xl mx-auto">
+                        <p class="text-xl font-bold text-white mb-6">Q1. あなたが太極拳に最も求めるものは何ですか？</p>
+                        <div class="space-y-4">
+                            <button onclick="handleQuiz('health')" class="w-full p-4 bg-indigo-800 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors border border-indigo-600">
+                                健康維持・柔軟性・動作の美しさ
+                            </button>
+                            <button onclick="handleQuiz('martial')" class="w-full p-4 bg-indigo-800 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors border border-indigo-600">
+                                護身・身体操作の探求・武術としての深み
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="quiz-q2" class="max-w-xl mx-auto hidden">
+                        <p class="text-xl font-bold text-white mb-6">Q2. 武術を探求する際、どちらの環境を好みますか？</p>
+                        <div class="space-y-4">
+                            <button onclick="showResult('theory')" class="w-full p-4 bg-indigo-800 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors border border-indigo-600">
+                                型の正確な保存と、精神・内功の理論的学習
+                            </button>
+                            <button onclick="showResult('practice')" class="w-full p-4 bg-indigo-800 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors border border-indigo-600">
+                                対人練習（推手等）を通じた実証的な検証と力学的分析
+                            </button>
+                        </div>
+                        <button onclick="resetQuiz()" class="mt-8 text-indigo-300 text-sm hover:text-white underline">最初に戻る</button>
+                    </div>
+
+                    <div id="quiz-result" class="max-w-2xl mx-auto hidden">
+                        <div class="bg-white p-8 rounded-2xl text-left shadow-lg">
+                            <span class="text-xs font-bold tracking-widest text-indigo-500 uppercase block mb-2">Analysis Result</span>
+                            <h4 id="result-title" class="text-2xl font-bold text-stone-900 mb-4"></h4>
+                            <p id="result-desc" class="text-stone-700 leading-relaxed mb-6"></p>
+                            <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                                <span class="font-bold text-sm text-stone-800 block mb-1">報告書からの考察事項：</span>
+                                <p id="result-note" class="text-sm text-stone-600 leading-relaxed"></p>
+                            </div>
+                        </div>
+                        <button onclick="resetQuiz()" class="mt-8 text-indigo-200 text-sm hover:text-white underline">再診断する</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-stone-200">
+            <p class="text-stone-500 text-sm">
+                Interactive Analysis Report based on the provided formal document.<br>
+                <span class="text-stone-400 text-xs mt-2 inline-block">Focus: Information Architecture & Data Synthesis</span>
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Tab Logic
+        const tabTheory = document.getElementById('tab-theory');
+        const tabPractice = document.getElementById('tab-practice');
+        const contentTheory = document.getElementById('content-theory');
+        const contentPractice = document.getElementById('content-practice');
+
+        function switchTab(target) {
+            if (target === 'theory') {
+                tabTheory.classList.add('active', 'bg-eef2ff');
+                tabTheory.classList.remove('text-stone-400', 'bg-transparent');
+                tabPractice.classList.remove('active', 'bg-eef2ff');
+                tabPractice.classList.add('text-stone-400', 'bg-transparent');
+                
+                contentTheory.classList.remove('hidden');
+                setTimeout(() => contentTheory.style.opacity = '1', 50);
+                contentPractice.style.opacity = '0';
+                setTimeout(() => contentPractice.classList.add('hidden'), 300);
+            } else {
+                tabPractice.classList.add('active', 'bg-eef2ff');
+                tabPractice.classList.remove('text-stone-400', 'bg-transparent');
+                tabTheory.classList.remove('active', 'bg-eef2ff');
+                tabTheory.classList.add('text-stone-400', 'bg-transparent');
+                
+                contentPractice.classList.remove('hidden');
+                setTimeout(() => contentPractice.style.opacity = '1', 50);
+                contentTheory.style.opacity = '0';
+                setTimeout(() => contentTheory.classList.add('hidden'), 300);
+            }
+        }
+
+        tabTheory.addEventListener('click', () => switchTab('theory'));
+        tabPractice.addEventListener('click', () => switchTab('practice'));
+
+        // Chart.js Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('domainComparisonChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['審美性・外見美', '対人実用・検証性', '身体的負荷・強度', '理論・精神的側面', '定量的採点への適合'],
+                    datasets: [
+                        {
+                            label: '現代スポーツ・競技',
+                            data: [95, 10, 50, 20, 95],
+                            backgroundColor: 'rgba(13, 148, 136, 0.2)', // teal-600
+                            borderColor: 'rgba(13, 148, 136, 1)',
+                            pointBackgroundColor: 'rgba(13, 148, 136, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '伝統太極拳 (理論重視)',
+                            data: [70, 30, 30, 95, 40],
+                            backgroundColor: 'rgba(79, 70, 229, 0.2)', // indigo-600
+                            borderColor: 'rgba(79, 70, 229, 1)',
+                            pointBackgroundColor: 'rgba(79, 70, 229, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '伝統太極拳 (実践重視)',
+                            data: [30, 95, 85, 60, 20],
+                            backgroundColor: 'rgba(225, 29, 72, 0.2)', // rose-600
+                            borderColor: 'rgba(225, 29, 72, 1)',
+                            pointBackgroundColor: 'rgba(225, 29, 72, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: {
+                                color: '#44403c', // stone-700
+                                font: { size: 12, weight: 'bold', family: 'sans-serif' }
+                            },
+                            ticks: { display: false, min: 0, max: 100 }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#292524', padding: 20, font: { size: 13 } }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    }
+                }
+            });
+        });
+
+        // Interactive Path Finder Logic
+        const q1 = document.getElementById('quiz-q1');
+        const q2 = document.getElementById('quiz-q2');
+        const resultDiv = document.getElementById('quiz-result');
+        
+        const resultData = {
+            sport: {
+                title: "推奨体系：パフォーマンス・競技としての太極拳",
+                desc: "あなたの目的には、1950年代以降に整備され、定量的な評価基準を持つ現代的なスポーツ・フィットネスとしての太極拳が最適です。動作の美しさや健康増進効果を安全に得ることができます。",
+                note: "万人に開かれたシステムですが、武道としての深層的な術理や対人での実用性は重視されない点に留意してください。"
+            },
+            theory: {
+                title: "推奨体系：伝統太極拳（理論的・形式的継承群）",
+                desc: "あなたの目的には、古来の套路（型）や「内功」の理論を厳格に保存・継承している門派が適しています。文化的・精神的な深みを追求することができます。",
+                note: "形式の美学は高い一方で、対人における実用性の検証が不十分となり、形骸化するリスクが報告書にて指摘されています。"
+            },
+            practice: {
+                title: "推奨体系：伝統太極拳（実践的・実証的検証群）",
+                desc: "あなたの目的には、推手などを通じて力学的効率や実証的な効果を重んじる実践的なグループが適しています。他武道への開放的な研究姿勢も見られます。",
+                note: "身体への負荷が高い訓練を伴う場合があり、初心者にとっては導入障壁が高い傾向がある点に留意してください。"
+            }
+        };
+
+        function handleQuiz(answer) {
+            q1.classList.add('hidden');
+            if (answer === 'health') {
+                showResult('sport');
+            } else {
+                q2.classList.remove('hidden');
+            }
+        }
+
+        function showResult(type) {
+            q2.classList.add('hidden');
+            document.getElementById('result-title').textContent = resultData[type].title;
+            document.getElementById('result-desc').textContent = resultData[type].desc;
+            document.getElementById('result-note').textContent = resultData[type].note;
+            resultDiv.classList.remove('hidden');
+        }
+
+        function resetQuiz() {
+            q1.classList.remove('hidden');
+            q2.classList.add('hidden');
+            resultDiv.classList.add('hidden');
+        }
+    </script>
+
+<a href="index.html#introduction" 
+   class="fixed bottom-8 right-8 bg-stone-800 hover:bg-black text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 z-50 group"
+   title="メインページへ戻る">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+</a>
+</body>
+</html>
